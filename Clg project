@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MITS — Deemed to be University | 3D Animated Concept</title>
+<meta name="description" content="A modern 3D animated concept website for Madanapalle Institute of Technology & Science.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050816;--panel:#0b1228;--text:#eef5ff;--muted:#a8b4cc;--cyan:#39d8ff;--blue:#4b7cff;--line:rgba(255,255,255,.1)}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 80% 10%,#12326b 0,transparent 28%),var(--bg);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 5%;background:rgba(5,8,22,.68);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{max-width:1250px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
+.logoMark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 0 35px #39d8ff55;transform:rotate(-8deg)}
+.logoMark span{transform:rotate(8deg)}
+nav{display:flex;gap:24px}
+nav a{font-size:14px;color:#cbd5ea;transition:.25s}
+nav a:hover{color:white;text-shadow:0 0 16px var(--cyan)}
+.menu{display:none;background:none;border:0;color:white;font-size:25px}
+section{padding:100px 6%;position:relative}
+.hero{min-height:100vh;display:grid;place-items:center;padding-top:120px;overflow:hidden}
+.heroGrid{max-width:1250px;width:100%;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:50px}
+.badge{display:inline-flex;padding:8px 13px;border:1px solid #39d8ff55;border-radius:999px;background:#39d8ff0d;color:#8eeaff;font-size:13px;margin-bottom:22px}
+h1{font-size:clamp(48px,7vw,88px);line-height:.95;letter-spacing:-4px}
+.grad{background:linear-gradient(90deg,#fff,#7feaff 42%,#6488ff);-webkit-background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;line-height:1.7;max-width:650px;margin:24px 0}
+.buttons{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:13px 20px;border-radius:13px;border:1px solid var(--line);display:inline-block;font-weight:700;transition:.3s}
+.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#03101d;border:0;box-shadow:0 10px 35px #39d8ff25}
+.btn:hover{transform:translateY(-3px);box-shadow:0 15px 40px #0008}
+.scene{height:510px;position:relative;perspective:1000px;display:grid;place-items:center}
+.orbit{position:absolute;border:1px solid #39d8ff44;border-radius:50%;transform:rotateX(68deg) rotateZ(-20deg);animation:spin 12s linear infinite}
+.o1{width:390px;height:390px}.o2{width:300px;height:300px;animation-duration:8s;animation-direction:reverse;border-color:#6488ff55}
+.cube{width:180px;height:180px;position:relative;transform-style:preserve-3d;animation:float 5s ease-in-out infinite}
+.face{position:absolute;inset:0;display:grid;place-items:center;border:1px solid #79e9ff77;background:linear-gradient(135deg,#0e2d4d99,#16236a77);box-shadow:inset 0 0 50px #39d8ff18,0 0 45px #39d8ff22;backdrop-filter:blur(4px)}
+.front{transform:translateZ(90px)}.back{transform:rotateY(180deg) translateZ(90px)}.right{transform:rotateY(90deg) translateZ(90px)}.left{transform:rotateY(-90deg) translateZ(90px)}.top{transform:rotateX(90deg) translateZ(90px)}.bottom{transform:rotateX(-90deg) translateZ(90px)}
+.face span{font-size:48px;font-weight:900;text-shadow:0 0 30px #39d8ff}
+.particle{position:absolute;width:5px;height:5px;border-radius:50%;background:#7feaff;box-shadow:0 0 16px #7feaff;animation:drift 5s infinite ease-in-out}
+.p1{top:15%;left:12%}.p2{top:70%;left:5%;animation-delay:1s}.p3{top:25%;right:4%;animation-delay:2s}.p4{bottom:10%;right:15%;animation-delay:3s}
+.sectionTitle{text-align:center;max-width:760px;margin:0 auto 45px}
+.kicker{color:#65e6ff;text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:800}
+h2{font-size:clamp(34px,5vw,56px);margin:10px 0 15px}
+.sectionTitle p,.aboutText p{color:var(--muted);line-height:1.75}
+.cards{max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{padding:27px;border:1px solid var(--line);background:linear-gradient(145deg,#ffffff08,#ffffff03);border-radius:22px;min-height:210px;transition:.35s;transform-style:preserve-3d}
+.card:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg);border-color:#39d8ff55;box-shadow:0 20px 50px #0008}
+.icon{font-size:34px;margin-bottom:16px}.card h3{margin-bottom:9px}.card p{color:var(--muted);line-height:1.65;font-size:14px}
+.about{max-width:1250px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:25px}
+.stat{padding:22px;border:1px solid var(--line);border-radius:18px;background:#ffffff05}
+.stat b{font-size:32px;color:#79e9ff}.stat small{display:block;color:var(--muted);margin-top:4px}
+.programs{grid-template-columns:repeat(4,1fr)}
+.events{grid-template-columns:repeat(3,1fr)}
+.event{position:relative;overflow:hidden}
+.event:after{content:"";position:absolute;width:120px;height:120px;background:#39d8ff22;filter:blur(35px);right:-40px;top:-40px}
+.contact{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contactBox{padding:32px;border:1px solid var(--line);border-radius:22px;background:#ffffff05}
+.contactBox p{color:var(--muted);line-height:1.8;margin-top:12px}
+footer{padding:35px 6%;border-top:1px solid var(--line);color:#93a0ba;text-align:center}
+.reveal{opacity:0;transform:translateY(30px);transition:.8s}.reveal.show{opacity:1;transform:none}
+@keyframes spin{to{transform:rotateX(68deg) rotateZ(340deg)}}@keyframes float{50%{transform:translateY(-20px) rotateX(10deg) rotateY(25deg)}to{transform:translateY(0) rotateX(0) rotateY(360deg)}}@keyframes drift{50%{transform:translate(25px,-35px) scale(1.5);opacity:.5}}
+@media(max-width:850px){nav{display:none}.menu{display:block}.heroGrid,.about,.contact{grid-template-columns:1fr}.hero{text-align:center}.hero p{margin-left:auto;margin-right:auto}.buttons{justify-content:center}.scene{height:390px}.cube{width:130px;height:130px}.front{transform:translateZ(65px)}.back{transform:rotateY(180deg) translateZ(65px)}.right{transform:rotateY(90deg) translateZ(65px)}.left{transform:rotateY(-90deg) translateZ(65px)}.top{transform:rotateX(90deg) translateZ(65px)}.bottom{transform:rotateX(-90deg) translateZ(65px)}.o1{width:280px;height:280px}.o2{width:220px;height:220px}.cards,.events{grid-template-columns:1fr}.programs{grid-template-columns:1fr 1fr}section{padding:75px 5%}}
+@media(max-width:500px){h1{letter-spacing:-2px}.programs,.stats{grid-template-columns:1fr}.hero{padding-top:110px}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="logo" href="#home"><div class="logoMark"><span>M</span></div><span>MITS</span></a>
+<nav><a href="#home">Home</a><a href="#about">About</a><a href="#academics">Academics</a><a href="#campus">Campus</a><a href="#events">Events</a><a href="#contact">Contact</a></nav>
+<button class="menu" onclick="toggleMenu()">☰</button>
+</div></header>
+
+<main>
+<section class="hero" id="home">
+<div class="heroGrid">
+<div class="reveal">
+<div class="badge">✦ MITS — Deemed to be University</div>
+<h1>Learn.<br><span class="grad">Innovate.</span><br>Lead.</h1>
+<p>A premium student-focused concept website for Madanapalle Institute of Technology & Science, blending technology, academics and campus life in a modern 3D experience.</p>
+<div class="buttons"><a class="btn primary" href="#academics">Explore Academics →</a><a class="btn" href="#about">Discover MITS</a></div>
+</div>
+<div class="scene reveal">
+<div class="orbit o1"></div><div class="orbit o2"></div><div class="cube">
+<div class="face front"><span>M</span></div><div class="face back"><span>I</span></div><div class="face right"><span>T</span></div><div class="face left"><span>S</span></div><div class="face top"><span>✦</span></div><div class="face bottom"><span>∞</span></div>
+</div>
+<div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div><div class="particle p4"></div>
+</div>
+</div>
+</section>
+
+<section id="about"><div class="about reveal">
+<div class="aboutText"><div class="kicker">About MITS</div><h2>Engineering the future from Madanapalle.</h2>
+<p>Madanapalle Institute of Technology & Science was established in 1998. The institution is located on the Madanapalle–Anantapur Highway and is now a Deemed to be University.</p>
+<div class="stats"><div class="stat"><b>1998</b><small>Established</small></div><div class="stat"><b>26.17</b><small>Acres campus</small></div><div class="stat"><b>A+</b><small>NAAC accreditation</small></div><div class="stat"><b>28+</b><small>Years of excellence</small></div></div></div>
+<div class="card"><div class="icon">🌐</div><h3>Vision & Mission</h3><p>Serve the region, nation and world through academic excellence, research relevance and community engagement while emphasizing the importance of individuals.</p></div>
+</div></section>
+
+<section id="academics"><div class="sectionTitle reveal"><div class="kicker">Academics</div><h2>Programs built for tomorrow</h2><p>Explore engineering, computing, management and application-focused programs.</p></div>
+<div class="cards programs">
+<div class="card reveal"><div class="icon">💻</div><h3>Computer Science</h3><p>CSE and specialized pathways including AI, ML, Data Science, Cyber Security, CS and AI & Robotics.</p></div>
+<div class="card reveal"><div class="icon">📡</div><h3>ECE</h3><p>Communication systems, VLSI, embedded systems and signal-processing focused learning.</p></div>
+<div class="card reveal"><div class="icon">⚙️</div><h3>Mechanical</h3><p>Design, manufacturing, automation, robotics and thermal systems.</p></div>
+<div class="card reveal"><div class="icon">🏗️</div><h3>Civil</h3><p>Structural, environmental and infrastructure-focused engineering education.</p></div>
+<div class="card reveal"><div class="icon">🤖</div><h3>AI & Data Science</h3><p>Modern computing pathways focused on intelligent systems and data-driven innovation.</p></div>
+<div class="card reveal"><div class="icon">📊</div><h3>Management</h3><p>BBA and MBA pathways covering business, leadership, finance and marketing.</p></div>
+<div class="card reveal"><div class="icon">🧑‍💻</div><h3>BCA / MCA</h3><p>Application-oriented computing and software development education.</p></div>
+<div class="card reveal"><div class="icon">🔬</div><h3>Research</h3><p>Postgraduate and Ph.D. opportunities across multiple disciplines.</p></div>
+</div></section>
+
+<section id="campus"><div class="sectionTitle reveal"><div class="kicker">Campus Experience</div><h2>A campus that feels alive</h2><p>Use this section for official campus photos, labs, library, hostels, sports and student activities.</p></div>
+<div class="cards">
+<div class="card reveal"><div class="icon">🏫</div><h3>Smart Learning Spaces</h3><p>Showcase classrooms, laboratories and technology-enabled learning environments.</p></div>
+<div class="card reveal"><div class="icon">📚</div><h3>Library & Research</h3><p>Highlight books, digital resources, research facilities and academic support.</p></div>
+<div class="card reveal"><div class="icon">🏆</div><h3>Student Life</h3><p>Showcase technical fests, cultural events, sports, clubs and student achievements.</p></div>
+</div></section>
+
+<section id="events"><div class="sectionTitle reveal"><div class="kicker">Events & News</div><h2>What's happening at MITS</h2></div>
+<div class="cards events">
+<div class="card event reveal"><div class="icon">🚀</div><h3>INSPIRE-2026</h3><p>International conference on sustainable practices and innovations in research and engineering — Dec 7–8, 2026.</p></div>
+<div class="card event reveal"><div class="icon">🛰️</div><h3>Science Academies' Workshop</h3><p>Workshop on AI and space technologies for climate and resource monitoring — Sept 7–8, 2026.</p></div>
+<div class="card event reveal"><div class="icon">🎓</div><h3>Academic Excellence</h3><p>Use this card for the latest official MITS news, announcements and student achievements.</p></div>
+</div></section>
+
+<section id="contact"><div class="sectionTitle reveal"><div class="kicker">Contact</div><h2>Connect with MITS</h2></div>
+<div class="contact">
+<div class="contactBox reveal"><h3>📍 Campus</h3><p>Madanapalle-Kadiri Road, NH-42, Kurabalakota Mandal, Madanapalle-517325, Andhra Pradesh, India.</p><p>☎ +91-8571-280255 / 280706</p></div>
+<div class="contactBox reveal"><h3>🌐 Official Website</h3><p>For admissions, programs, notices, placements and official information, visit the MITS website.</p><a class="btn primary" href="https://mits.ac.in/" target="_blank" rel="noopener">Visit MITS.ac.in →</a></div>
+</div></section>
+</main>
+<footer>© 2026 MITS — Deemed to be University · Student Website Concept</footer>
+
+<script>
+function toggleMenu(){
+ const n=document.querySelector('nav');
+ n.style.display=n.style.display==='flex'?'none':'flex';
+ n.style.position='absolute';n.style.top='75px';n.style.right='5%';n.style.flexDirection='column';
+ n.style.padding='18px';n.style.background='#0b1228';n.style.border='1px solid rgba(255,255,255,.1)';n.style.borderRadius='16px';
+}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
+</script>
+</body>
+</html>
