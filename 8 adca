@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define INF INT_MAX
+
+struct Edge {
+    int source;
+    int destination;
+    int distance;
+};
+
+void BellmanFord(int n, int e, struct Edge route[], int source) {
+    int dist[n];
+
+    // Initialize distances
+    for (int i = 0; i < n; i++) {
+        dist[i] = INF;
+    }
+
+    dist[source] = 0;
+
+    // Relax all edges n-1 times
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < e; j++) {
+            int u = route[j].source;
+            int v = route[j].destination;
+            int w = route[j].distance;
+
+            if (dist[u] != INF && dist[u] + w < dist[v]) {
+                dist[v] = dist[u] + w;
+            }
+        }
+    }
+
+    // Check for negative distance cycle
+    for (int j = 0; j < e; j++) {
+        int u = route[j].source;
+        int v = route[j].destination;
+        int w = route[j].distance;
+
+        if (dist[u] != INF && dist[u] + w < dist[v]) {
+            printf("Negative distance cycle detected\n");
+            return;
+        }
+    }
+
+    // Display shortest distances
+    printf("\nShortest distances from source place %d:\n", source);
+
+    for (int i = 0; i < n; i++) {
+        if (dist[i] == INF) {
+            printf("No route available to place %d\n", i);
+        } else {
+            printf("Place %d : %d km\n", i, dist[i]);
+        }
+    }
+}
+
+int main() {
+    int n, e, source;
+
+    printf("Enter number of places: ");
+    scanf("%d", &n);
+
+    printf("Enter number of routes: ");
+    scanf("%d", &e);
+
+    struct Edge route[e];
+
+    printf("Enter source place (0 to %d): ", n - 1);
+    scanf("%d", &source);
+
+    printf("Enter route details (source destination distance):\n");
+
+    for (int i = 0; i < e; i++) {
+        scanf("%d %d %d",
+              &route[i].source,
+              &route[i].destination,
+              &route[i].distance);
+    }
+
+    BellmanFord(n, e, route, source);
+
+    return 0;
+}
